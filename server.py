@@ -17,6 +17,11 @@ def handle_match(data=None):
     return data
 
 
+@app.get("/")
+@cross_origin(app)
+async def match(request):
+    return json({"status":"ok"})
+
 @app.post("/match")
 @cross_origin(app)
 async def match(request):
