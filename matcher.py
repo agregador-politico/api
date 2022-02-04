@@ -19,28 +19,40 @@ def load_database(database=DATABASE):
     database = open_file(database)
     return database
 
-def calculate_distance(user=None, deputy=None):
+
+def calculate_distance(user=None, vote_list=None):
     sum = 0
     for i in range(len(user)):
-        sum += math.pow((user[i] - deputy[i]), 2)
-    distance = math.pow(sum, 1/2)
+        sum += math.pow((user[i] - vote_list[i]), 2)
+    distance = math.pow(sum, 1 / 2)
     return distance
 
-def compare_user(user=None, database=None):
+
+def sort_compare_dict(compare_dict=None):
+    sorted_dict = dict(sorted(compare_dict.items(), key=lambda item: item[1]))
+    return sorted_dict
+
+
+def compare_user(user=None, data=None):
     distance_dict = dict()
-    data = database
-    for deputy in data:
-        print(deputy)
-        #data = deputy.tail(12)
-        #distance_dict[deputy.tail(-1)] = calculate_distance(y,data)
+    for i in range(len(data)):
+        vote_list = data.loc[i].tail(12)
+        distance_dict[
+            f'{data.loc[i, "nome"]} {data.loc[i, "siglaPartido"]}'
+        ] = calculate_distance(y, vote_list)
+    distance_dict = sort_compare_dict(distance_dict)
     return distance_dict
 
 
+def do_match(user=None, database=None):
+    compare = compare_user(user, database)
+    items = compare.keys()
+    closest = list(items)[:5]
+    distant = list(items)[-5:]
+    return closest, distant
 
 
 if __name__ == "__main__":
-    y = [1.0,1.0,1.0,0.5,0.5,1.0,0.0,1.0,1.0,1.0,0.0,1.0]
+    y = [1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0]
     database = load_database()
-    compare = compare_user(y, database)
-    #print(compare)
-    #print(distance)
+    print(do_match(y, database))
