@@ -60,9 +60,9 @@ def do_match(user=None, database=None):
 if __name__ == "__main__":
     database = load_database()
     user_data = {
-        "nome": "x",
-        "PL 2337/21": "1.0",
-        "pergunta-2": "",
+        "nome": "Arthur",
+        "pergunta-1": "1.0",
+        "pergunta-2": "1.0",
         "pergunta-3": "",
         "pergunta-4": "",
         "pergunta-5": "",
@@ -70,14 +70,14 @@ if __name__ == "__main__":
         "pergunta-7": "",
         "pergunta-8": "",
         "pergunta-9": "",
-        "pergunta-10": "",
-        "pergunta-11": "",
-        "pergunta-12": "",
-        "comentario": "x",
+        "pergunta-10": "0.5",
+        "pergunta-11": "0.0",
+        "pergunta-12": "0.5",
+        "comentario": "",
     }
     # user_list = [1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0]
     # print(do_match(user_list, database))
 
     converted_data = convert_input(user_data)
     print(converted_data)
-    print(do_match(converted_data, database))
+    # print(do_match(converted_data, database))
