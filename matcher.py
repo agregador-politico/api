@@ -7,7 +7,12 @@ DATABASE = "database.csv"
 def convert_input(data=None):
     data.pop("nome")
     data.pop("comentario")
-    return data
+    for key in data.keys():
+        if data[key] == "":
+            data[key] = 0.5
+        else:
+            data[key] = float(data[key])
+    return list(data.values())
 
 
 def open_file(database=DATABASE):
@@ -39,7 +44,7 @@ def compare_user(user=None, data=None):
         vote_list = data.loc[i].tail(12)
         distance_dict[
             f'{data.loc[i, "nome"]} {data.loc[i, "siglaPartido"]}'
-        ] = calculate_distance(y, vote_list)
+        ] = calculate_distance(user, vote_list)
     distance_dict = sort_compare_dict(distance_dict)
     return distance_dict
 
@@ -53,6 +58,26 @@ def do_match(user=None, database=None):
 
 
 if __name__ == "__main__":
-    y = [1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0]
     database = load_database()
-    print(do_match(y, database))
+    user_data = {
+        "nome": "x",
+        "PL 2337/21": "1.0",
+        "pergunta-2": "",
+        "pergunta-3": "",
+        "pergunta-4": "",
+        "pergunta-5": "",
+        "pergunta-6": "",
+        "pergunta-7": "",
+        "pergunta-8": "",
+        "pergunta-9": "",
+        "pergunta-10": "",
+        "pergunta-11": "",
+        "pergunta-12": "",
+        "comentario": "x",
+    }
+    # user_list = [1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0]
+    # print(do_match(user_list, database))
+
+    converted_data = convert_input(user_data)
+    print(converted_data)
+    print(do_match(converted_data, database))

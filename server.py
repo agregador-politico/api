@@ -4,19 +4,20 @@ from sanic.response import json
 import matcher
 
 
-app = Sanic("agrepga-api")
+app = Sanic("agrega-api")
 
 
 def handle_match(data=None):
     converted_data = matcher.convert_input(data)
-    db = matcher.load_database()
-    logger.error(db)
+    database = matcher.load_database()
+    matcher.do_match(converted_data, database)
     return data
 
 
 @app.post("/match")
 async def match(request):
     user_match = handle_match(request.json)
+    logger.info(request.json)
     return json(user_match)
 
 
