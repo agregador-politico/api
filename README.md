@@ -3,9 +3,24 @@ Api central do projeto, o objetivo é que todos os serviços agregadores consuma
 
 ## Uso
 
+### Docker
+
+```shel
+docker-compose build
+docker-compose up
+```
+
+### Local
+
 ```shell
+cd app/
+pip install -r requirements.txt
 python server.py
 ```
+
+### Testando API:
+
+#### match/
 
 ```shell
 curl -d '{
