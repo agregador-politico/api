@@ -41,6 +41,14 @@ async def question(request):
     logger.info(f"Question {question_id} inserted in database")
     return json({"status": "ok"})
 
+@app.post("/access")
+@cross_origin(app)
+async def access(request):
+    db = database_connector.Database()
+    access_id = db.insert_access(request.json)
+    logger.info(f"Access {access_id} inserted in database")
+    return json({"status": "ok"})
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)

@@ -28,3 +28,10 @@ class Database:
         info['time'] = datetime.datetime.utcnow()
         question_id = questions.insert_one(info).inserted_id
         return question_id
+
+    def insert_access(self, data=None):
+        access = self.db.access
+        info = data.copy()
+        info['time'] = datetime.datetime.utcnow()
+        access_id = questions.insert_one(info).inserted_id
+        return question_id
