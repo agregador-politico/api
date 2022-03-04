@@ -17,12 +17,14 @@ class Database:
 
     def insert_form(self, data=None):
         forms = self.db.forms
-        data['time'] = datetime.datetime.utcnow()
-        form_id = forms.insert_one(data).inserted_id
+        info = data.copy()
+        info['time'] = datetime.datetime.utcnow()
+        form_id = forms.insert_one(info).inserted_id
         return form_id
 
     def insert_question(self, data=None):
         questions = self.db.questions
-        data['time'] = datetime.datetime.utcnow()
-        question_id = questions.insert_one(data).inserted_id
+        info = data.copy()
+        info['time'] = datetime.datetime.utcnow()
+        question_id = questions.insert_one(info).inserted_id
         return question_id

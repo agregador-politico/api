@@ -27,10 +27,10 @@ async def match(request):
 @app.post("/match")
 @cross_origin(app)
 async def match(request):
-    user_match = handle_match(request.json)
     db = database_connector.Database()
     form_id = db.insert_form(request.json)
     logger.info(f"Form {form_id} inserted in database")
+    user_match = handle_match(request.json)
     return json(user_match)
 
 @app.post("/question")
