@@ -20,3 +20,9 @@ class Database:
         data['time'] = datetime.datetime.utcnow()
         form_id = forms.insert_one(data).inserted_id
         return form_id
+
+    def insert_question(self, data=None):
+        questions = self.db.questions
+        data['time'] = datetime.datetime.utcnow()
+        question_id = questions.insert_one(data).inserted_id
+        return question_id

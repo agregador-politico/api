@@ -29,8 +29,17 @@ async def match(request):
 async def match(request):
     user_match = handle_match(request.json)
     db = database_connector.Database()
-    db.insert_form(request.json)
+    form_id = db.insert_form(request.json)
+    logger.info(f"Form {form_id} inserted in database")
     return json(user_match)
+
+@app.post("/question")
+@cross_origin(app)
+async def question(request):
+    db = database_connector.Database()
+    question_id = db.insert_question(request.json)
+    logger.info(f"Question {question_id} inserted in database")
+    return json({"status": "ok"})
 
 
 if __name__ == "__main__":
