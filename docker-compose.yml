@@ -6,5 +6,19 @@ services:
       context: .
       dockerfile: ./Dockerfile
     restart: unless-stopped
+    volumes:
+      - ./app:/app
     ports:
       - 8000:8000
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:5.0
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=agregador
