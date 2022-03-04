@@ -4,6 +4,7 @@ from sanic.response import json
 from sanic_cors import CORS, cross_origin
 
 import matcher
+import database_connector
 
 
 app = Sanic("agrega-api")
@@ -20,14 +21,15 @@ def handle_match(data=None):
 @app.get("/")
 @cross_origin(app)
 async def match(request):
-    return json({"status":"ok"})
+    return json({"status": "ok"})
+
 
 @app.post("/match")
 @cross_origin(app)
 async def match(request):
-    print(request.json)
     user_match = handle_match(request.json)
-    print(user_match)
+    db = database_connector.Database()
+    db.insert_form(request.json)
     return json(user_match)
 
 
