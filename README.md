@@ -20,6 +20,26 @@ python server.py
 
 ### Testando API:
 
+####  access/
+
+```shell
+curl -d '{
+  "hash": "x123",
+  "origem": "0.0"
+}' -H "Content-Type: application/json" -X POST http://localhost:8000/access
+```
+
+####  question/
+
+```shell
+curl -d '{
+  "nome": "Arthur",
+  "hash": "x123",
+  "id_question": "pergunta-1",
+  "answer": "0.0"
+}' -H "Content-Type: application/json" -X POST http://localhost:8000/question
+```
+
 #### match/
 
 ```shell
@@ -40,10 +60,4 @@ curl -d '{
   "comentario": "x"
 }' -H "Content-Type: application/json" -X POST http://localhost:8000/match
 
-curl -d '{
-  "nome": "Arthur",
-  "hash": "x123",
-  "id_question": "pergunta-1",
-  "answer": "0.0"
-}' -H "Content-Type: application/json" -X POST http://localhost:8000/question
 ```

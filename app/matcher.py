@@ -79,5 +79,5 @@ if __name__ == "__main__":
     # print(do_match(user_list, database))
 
     converted_data = convert_input(user_data)
-    print(converted_data)
+    #print(converted_data)
     # print(do_match(converted_data, database))
