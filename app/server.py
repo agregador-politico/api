@@ -33,6 +33,7 @@ async def match(request):
     logger.info(f"Form {form_id} inserted in database")
     return json(user_match)
 
+
 @app.post("/question")
 @cross_origin(app)
 async def question(request):

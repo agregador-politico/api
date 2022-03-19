@@ -15,8 +15,8 @@ def convert_input(data=None):
     return list(data.values())
 
 
-def open_file(database=DATABASE):
-    csv_data = pandas.read_csv(database)
+def open_file(file_name=DATABASE):
+    csv_data = pandas.read_csv(file_name)
     return csv_data
 
 
